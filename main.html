@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather App</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+/* Styles remain unchanged from your original CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #00b4d8, #0077b6);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#Search {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+#searchInput:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+#searchButton {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    background: #023e8a;
+    color: white;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#searchButton:hover {
+    background: #03045e;
+}
+
+#OutPut {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+    color: white;
+}
+
+#cityName {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#OutPut span {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+#OutPut p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+}
+
+#TopCites {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.CityCard {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 1.5rem;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    color: white;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.CityCard:hover {
+    transform: translateY(-5px);
+}
+
+.CityCard h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.CityCard p {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.8rem;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    #Search {
+        flex-direction: column;
+    }
+
+    #searchButton {
+        width: 100%;
+    }
+
+    #cityName {
+        font-size: 2rem;
+    }
+
+    .CityCard {
+        margin: 0 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #OutPut span {
+        grid-template-columns: 1fr;
+    }
+
+    #cityName {
+        font-size: 1.8rem;
+    }
+}
+</style>
+</head>
+<body>
+<main>
+<section id="Search">
+<input type="text" id="searchInput" placeholder="Enter a city name...">
+<button onclick="Search()" id="searchButton">
+<i class="fas fa-search"></i> Search
+</button>
+</section>
+
+<section id="OutPut">
+<h2 id="cityName">Weather Information</h2>
+
+<span>
+<p id="temperature"><i class="fas fa-thermometer-half"></i> Temperature: --°C</p>
+<p id="feelsLike"><i class="fas fa-temperature-high"></i> Feels like: --°C</p>
+<p id="description"><i class="fas fa-cloud"></i> Description: --</p>
+<p id="humidity"><i class="fas fa-tint"></i> Humidity: --%</p>
+<p id="windSpeed"><i class="fas fa-wind"></i> Wind Speed: -- km/h</p>
+</span>
+</section>
+
+<section id="TopCites">
+<div id="Mumbai" class="CityCard">
+<h3><i class="fas fa-city"></i> Mumbai</h3>
+<p><i class="fas fa-temperature-high"></i> Feels like: 26°C</p>
+<p><i class="fas fa-tint"></i> Humidity: 85%</p>
+<p><i class="fas fa-wind"></i> Wind Speed: 10 km/h</p>
+</div>
+<div id="London" class="CityCard">
+<h3><i class="fas fa-city"></i> London</h3>
+<p><i class="fas fa-temperature-high"></i> Feels like: 24°C</p>
+<p><i class="fas fa-tint"></i> Humidity: 78%</p>
+<p><i class="fas fa-wind"></i> Wind Speed: 8 km/h</p>
+</div>
+<div id="Tokyo" class="CityCard">
+<h3><i class="fas fa-city"></i> Tokyo</h3>
+<p><i class="fas fa-temperature-high"></i> Feels like: 27°C</p>
+<p><i class="fas fa-tint"></i> Humidity: 80%</p>
+<p><i class="fas fa-wind"></i> Wind Speed: 12 km/h</p>
+</div>
+</section>
+</main>
+
+<script src="./Main.js"></script>
+</body>
+</html>
